@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #0a0a0a;
+    color: #00ff00;
+    overflow-x: hidden;
+}
+
+/* Background Lines Animation */
+.background-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(0, 255, 0, 0.3) 50%, 
+        transparent 100%);
+    animation: lineMove 3s linear infinite;
+}
+
+@keyframes lineMove {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+/* Main Container */
+.container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Header with Encrypted Text Effect */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #00ff00, #00aa00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.encrypted-text {
+    font-size: 1.5rem;
+    min-height: 40px;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.encrypted-text.revealed {
+    color: #00ff00;
+}
+
+/* Game Container */
+.game-section {
+    background: rgba(0, 20, 0, 0.8);
+    border: 3px solid #00ff00;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+}
+
+.game-canvas {
+    width: 100%;
+    height: 400px;
+    background: #000;
+    border: 2px solid #00ff00;
+    position: relative;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+/* Game Elements */
+.player {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #00ff00;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transition: left 0.1s;
+    bottom: 20px;
+    filter: drop-shadow(0 0 10px #00ff00);
+}
+
+.enemy {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #ff0000;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px #ff0000);
+}
+
+.bullet {
+    position: absolute;
+    width: 4px;
+    height: 15px;
+    background: #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #ff00ff;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* UI Elements */
+.game-ui {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+.score, .lives, .level {
+    padding: 10px 20px;
+    background: rgba(0, 255, 0, 0.1);
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+}
+
+.controls {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #00aa00;
+}
+
+.start-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 15px 40px;
+    background: #00ff00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.start-btn:hover {
+    background: #00aa00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    transform: scale(1.05);
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff0000;
+    text-shadow: 0 0 20px #ff0000;
+    display: none;
+    z-index: 10;
+}
+
+.game-over.show {
+    display: block;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .encrypted-text {
+        font-size: 1rem;
+    }
+
+    .game-canvas {
+        height: 300px;
+    }
+}

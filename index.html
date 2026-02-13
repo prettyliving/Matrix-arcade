@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕹️ RETRO MATRIX ARCADE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Lines -->
+    <div class="background-lines" id="bgLines"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">🕹️ MATRIX INVADERS</h1>
+            <div class="encrypted-text" id="encryptedText">████████████████████████████</div>
+        </div>
+
+        <!-- Game Section -->
+        <div class="game-section">
+            <div class="game-canvas" id="gameCanvas">
+                <div class="player" id="player"></div>
+                <div class="game-over" id="gameOver">GAME OVER</div>
+            </div>
+
+            <div class="game-ui">
+                <div class="score">SCORE: <span id="score">0</span></div>
+                <div class="level">LEVEL: <span id="level">1</span></div>
+                <div class="lives">LIVES: <span id="lives">3</span></div>
+            </div>
+
+            <div class="controls">
+                USE ARROW KEYS ← → TO MOVE | SPACEBAR TO SHOOT<br>
+                DESTROY ALL RED INVADERS!
+            </div>
+
+            <button class="start-btn" id="startBtn">START GAME</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
